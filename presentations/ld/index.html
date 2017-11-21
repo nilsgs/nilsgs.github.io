@@ -3,48 +3,150 @@
 <head>
   <link rel="stylesheet" href="../../styles/reveal.css">
   <link rel="stylesheet" href="../../styles/reveal-themes/black.css">
+  <link rel="stylesheet" href="../../styles/zenburn.css">
 </head>
 
 <body>
   <div class="reveal">
     <div class="slides">
-      <section>
-          <section>
-              <div class="stretch">
-                  <img class="plain" style="background: none" src="ld_logo.png" />
-              </div>
-              <h2>Launch Darkly</h2>
-              <h3>Nils Georg Skutle</h3>
-              <p>Twitter og greier/github</p>
-          </section>
-          <section>
-            <h2>Agenda</h2>
-            <ul>
-              <li>Intro</li>
-              <li>Admin UI</li>
-              <li>Clients (JS, C# ...)</li>
-              <li>Environments</li>
-              <li>Users (Toggle context)</li>
-              <li>Dev console</li>
-              <li>Audit log</li>
-              <li>Web Hooks</li>
-              <li>Feature flags</li>
-              <li>Bool vs. multivariate</li>
-              <li>Targeting</li>
-              <li>Prerequisites</li>
-              <li>Flag status</li>
-              <li>Pricing</li>
-              <li>Code as an island</li>
-              <li>hide by abstraction</li>
-            </ul>
-          </section>
-      </section>
-      
 
+      <!-- =================== INTRODUCTION =================== -->
+      <section>
+        <section>
+          <h2>LaunchDarkly</h2>
+          <div class="stretch">
+            <img class="plain" style="background: none" src="ld_logo.png" />
+          </div>
+          <h4>Nils Georg Skutle</h4>
+          <p>Twitter og greier/github</p>
+        </section>
+        <section>
+          <h2>Agenda</h2>
+          <ul>
+            <li>Pricing</li>
+            <li>Code as an island</li>
+            <li>hide by abstraction</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- =================== WHAT IS LAUNCHDARKLY =================== -->
+      <section id="what-is-launchdarkly">
+        <section data-background="#28306a">
+          <h1>Hva er LaunchDarkly?</h1>
+        </section>
+        <section>
+          bla bla bla
+        </section>
+      </section>
+
+      <!-- =================== CLIENTS =================== -->
+      <section id="clients">
+        <section data-background="#28306a">
+          <h1>Klienter</h1>
+        </section>
+        <section>
+          <ul>
+            <li>C#</li>
+            <li>JS</li>
+            <li>PHP</li>
+            <li>Ruby</li>
+            <li>Bruk logoer</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Javascript</h2>
+          <pre><code class="hljs js" data-trim contenteditable>
+              let a = 1;
+              var client = new LDClient({});
+              if(client.haFlag('some-flag')) {
+                doFeature();
+              }
+          </code></pre>
+        </section>
+        <section>
+          <h2>C#</h2>
+          <pre><code class="hljs cs" data-trim contenteditable>
+              let a = 1;
+              var client = new LDClient({});
+              if(client.haFlag('some-flag')) {
+                doFeature();
+              }
+          </code></pre>
+        </section>
+      </section>
+
+      <!-- =================== ADMIN UI =================== -->
+      <section id="admin-ui">
+        <section data-background="#28306a">
+          <h1>Admin UI</h1>
+        </section>
+        <section>
+          <ul>
+            <li>Environments</li>
+            <li>Users</li>
+            <li>Dev console</li>
+            <li>Audit log</li>
+            <li>Web hooks</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- =================== FEATURE FLAGS =================== -->
+      <section id="feature-flags">
+        <section data-background="#28306a">
+          <h1>Feature flags</h1>
+        </section>
+        <section>
+          <ul>
+            <li>Bool vs. multivariate</li>
+            <li>Targeting</li>
+            <li>Prerequisites</li>
+            <li>Flag status</li>
+            <li>Kill switch</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- =================== PRICING =================== -->
+      <section id="pricing">
+        <section data-background="#28306a">
+          <h1>Hva koster det?</h1>
+        </section>
+        <section>
+          <ul>
+            <li>Prisgrafikk</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- =================== OTHER =================== -->
+      <section id="other">
+        <section data-background="#28306a">
+          <h1>Alternativer?</h1>
+          <p>Kan vi toggle dette?</p>
+        </section>
+        <section>
+          <ul>
+            <li>As an island (bilde)</li>
+            <li>By abstraction (bilde)</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- =================== THANKS =================== -->
+      <section id="thanks">
+        <h1>Takk for meg?</h1>
+        <ul>
+          <li>Spørsmål?</li>
+          <li>Twitter/GitHub</li>
+        </ul>
+      </section>
     </div>
   </div>
 
   <script src="../../js/reveal.js"></script>
+  <script src="../../lib/js/head.min.js"></script>
   <script>
     Reveal.initialize({
       controls: true,
@@ -52,6 +154,9 @@
       history: true,
       center: true,
       transition: 'slide', // none/fade/slide/convex/concave/zoom
+      dependencies: [
+          { src: '../../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+      ]
     });
   </script>
 </body>
