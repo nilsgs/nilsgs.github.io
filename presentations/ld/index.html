@@ -5,27 +5,34 @@
   <link rel="stylesheet" href="../../styles/reveal-themes/black.css">
   <link rel="stylesheet" href="../../styles/zenburn.css">
 </head>
-
+<style>
+  img.clean {
+    background: none!important; 
+    border: none!important; 
+    box-shadow:none!important;
+  }
+</style>
 <body>
   <div class="reveal">
     <div class="slides">
 
       <!-- =================== INTRODUCTION =================== -->
       <section>
-        <section>
-          <h2>LaunchDarkly</h2>
+        <section data-background="#28306a">
           <div class="stretch">
             <img class="plain" style="background: none" src="ld_logo.png" />
           </div>
           <h4>Nils Georg Skutle</h4>
-          <p>Twitter og greier/github</p>
+          <img class="clean" width="200" src="NN_Logo_Liten_RGB.svg" alt="" srcset="" />
         </section>
         <section>
           <h2>Agenda</h2>
           <ul>
-            <li>Pricing</li>
-            <li>Code as an island</li>
-            <li>hide by abstraction</li>
+            <li>Admin UI</li>
+            <li>Klienter</li>
+            <li>Feature flags</li>
+            <li>Pris</li>
+            <li>Andre triks i Ludo</li>
           </ul>
         </section>
       </section>
@@ -36,43 +43,9 @@
           <h1>Hva er LaunchDarkly?</h1>
         </section>
         <section>
-          bla bla bla
-        </section>
-      </section>
-
-      <!-- =================== CLIENTS =================== -->
-      <section id="clients">
-        <section data-background="#28306a">
-          <h1>Klienter</h1>
-        </section>
-        <section>
-          <ul>
-            <li>C#</li>
-            <li>JS</li>
-            <li>PHP</li>
-            <li>Ruby</li>
-            <li>Bruk logoer</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Javascript</h2>
-          <pre><code class="hljs js" data-trim contenteditable>
-              let a = 1;
-              var client = new LDClient({});
-              if(client.haFlag('some-flag')) {
-                doFeature();
-              }
-          </code></pre>
-        </section>
-        <section>
-          <h2>C#</h2>
-          <pre><code class="hljs cs" data-trim contenteditable>
-              let a = 1;
-              var client = new LDClient({});
-              if(client.haFlag('some-flag')) {
-                doFeature();
-              }
-          </code></pre>
+          <blockquote cite="https://launchdarkly.com/featureflags.html">
+            LaunchDarkly is a continuous delivery and feature flag management platform that enables teams to launch, control, and measure their features at scale
+          </blockquote>
         </section>
       </section>
 
@@ -89,6 +62,43 @@
             <li>Audit log</li>
             <li>Web hooks</li>
           </ul>
+        </section>
+      </section>
+
+      <!-- =================== CLIENTS =================== -->
+      <section id="clients">
+        <section data-background="#28306a">
+          <h1>Got SDK?</h1>
+        </section>
+        <section>
+          <img class="clean" width="200" src="https://its.inside.tru.ca/files/2013/02/java.png" alt="" />
+          <img class="clean" width="200" src="https://www.python.org/static/opengraph-icon-200x200.png" alt="" />
+          <img class="clean" width="200" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Ruby_logo.svg/600px-Ruby_logo.svg.png" alt="" />
+          <img class="clean" width="200" src="http://www.unixstickers.com/image/data/stickers/golang/golang.sh.png" alt="" srcset="" />
+          <img class="clean" width="200" src="https://ih1.redbubble.net/image.109336634.1604/flat,550x550,075,f.u1.jpg" alt="" srcset="" />
+          <img class="clean" width="200" src="https://dt-cdn.net/assets/images/gfx/icons/tech/php-fbd1629392.svg" alt="" srcset="" />
+          <img class="clean" width="200" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/480px-Unofficial_JavaScript_logo_2.svg.png" alt="" srcset="" />
+          <img class="clean" width="200" src="https://docs.microsoft.com/en-us/dotnet/images/hub/net.svg" alt="" srcset="" />
+          <img class="clean" width="200" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/IOS_logo.svg" alt="" srcset="" />
+          <img class="clean" width="200" src="https://image.flaticon.com/icons/svg/226/226770.svg" alt="" srcset="" />
+        </section>
+        <section>
+          <h2>C#</h2>
+          <pre><code class="hljs cs" data-trim contenteditable>
+              var ldClient = new LdClient("YOUR_SDK_KEY");
+
+              var user = User.WithKey("2a052")
+                             .AndEmail("marvin@heartofgold.uni");
+
+              if(ldClient.BoolVariation("my.feature", user, false))
+              {
+                ShowAwesomeFeature();
+              }
+              else
+              {
+                ShowBoringOldFeature();
+              }
+          </code></pre>
         </section>
       </section>
 
@@ -114,9 +124,7 @@
           <h1>Hva koster det?</h1>
         </section>
         <section>
-          <ul>
-            <li>Prisgrafikk</li>
-          </ul>
+          <img src="pricing.png" alt="" srcset="" />
         </section>
       </section>
 
@@ -155,7 +163,7 @@
       center: true,
       transition: 'slide', // none/fade/slide/convex/concave/zoom
       dependencies: [
-          { src: '../../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        { src: '../../plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
       ]
     });
   </script>
