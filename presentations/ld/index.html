@@ -4,12 +4,27 @@
   <link rel="stylesheet" href="../../styles/reveal.css">
   <link rel="stylesheet" href="../../styles/reveal-themes/black.css">
   <link rel="stylesheet" href="../../styles/zenburn.css">
+  <script crossorigin="anonymous" src="https://app.launchdarkly.com/snippet/ldclient.min.js"></script>
 </head>
 <style>
   img.clean {
     background: none!important; 
     border: none!important; 
     box-shadow:none!important;
+  }
+
+  img.logo {
+      position: fixed;
+      left: 20px;
+      top: 20px;
+      width: 100px;
+      border: none!important; 
+      box-shadow:none!important;
+  }
+
+  #request-feature {
+    color: lightblue;
+    cursor: pointer;
   }
 </style>
 <body>
@@ -19,21 +34,16 @@
       <!-- =================== INTRODUCTION =================== -->
       <section>
         <section data-background="#50E3C2">
-          <!-- <div class="stretch">
-            <img class="plain" style="background: none" src="ld_logo.png" />
-          </div> -->
           <h1>LaunchDarkly</h1>
           <h4>Nils Georg Skutle</h4>
-          <img class="clean" width="200" src="NN_Logo_Liten_RGB.svg" alt="" srcset="" />
         </section>
         <section>
           <h2>Agenda</h2>
           <ul>
             <li>Admin UI</li>
-            <li>Klienter</li>
+            <li>SDKs</li>
             <li>Feature flags</li>
             <li>Pris</li>
-            <li>Andre triks i Ludo</li>
           </ul>
         </section>
       </section>
@@ -63,11 +73,29 @@
           <ul>
             <li>Environments</li>
             <li>Users</li>
-            <li>Dev console</li>
+            <li id="request-feature">Dev console</li>
             <li>Audit log</li>
             <li>Web hooks</li>
           </ul>
+          
         </section>
+        <script>
+          var user = {
+            "key": "2a052",
+            "email": "marvin@heartofgold.hh"
+          };
+
+          var ldclient = LDClient.initialize('5a16f741067f1e0b0285a274', user);
+
+          ldclient.on('ready', function() {
+            var element = document.getElementById('request-feature');
+            var a = true;
+            element.onclick = function () { 
+              a = !a;
+              ldclient.variation('feature-' + (a ? '1' : '2'), false); 
+            };
+          });
+        </script>
       </section>
 
       <!-- =================== CLIENTS =================== -->
@@ -93,9 +121,9 @@
               var ldClient = new LdClient("YOUR_SDK_KEY");
 
               var user = User.WithKey("2a052")
-                             .AndEmail("marvin@heartofgold.uni");
+                             .AndEmail("marvin@heartofgold.hh");
 
-              if(ldClient.BoolVariation("my.feature", user, false))
+              if(ldClient.BoolVariation("feature-1", user, false))
               {
                 ShowAwesomeFeature();
               }
@@ -135,25 +163,21 @@
       </section>
 
       <!-- =================== OTHER =================== -->
-      <section id="other">
+      <!-- <section id="other">
         <section data-background="#50E3C2">
           <h1>Alternativer?</h1>
-          <p>Kan vi toggle dette?</p>
         </section>
-        <section>
-          <ul>
-            <li>As an island (bilde)</li>
-            <li>By abstraction (bilde)</li>
-          </ul>
-        </section>
-      </section>
+      </section> -->
 
       <!-- =================== THANKS =================== -->
       <section data-background="#50E3C2" id="thanks">
+        
         <h1>Takk for meg</h1>
       </section>
     </div>
   </div>
+
+  <img src="NN_Logo_Liten_RGB.svg" alt="novanet-logo" class="logo clean">
 
   <script src="../../js/reveal.js"></script>
   <script src="../../lib/js/head.min.js"></script>
